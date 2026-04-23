@@ -47,11 +47,11 @@ export const mockVisits = [
 ]
 
 export const mockTasks = [
-  { id: 'T001', name: 'UAT-TASK-01: ทดสอบสร้างงาน',        assignee: '1000080 - พนักงานขาย (UAT)', priority: 'สูง',   status: 'ใหม่',            dueDate: '30/04/2026', createdBy: '1000080' },
-  { id: 'T002', name: 'UAT-TASK-02: ทดสอบ Assign งาน',     assignee: '1000075 - ไชยพร เกตมะณี',    priority: 'กลาง',  status: 'กำลังดำเนินการ', dueDate: '05/05/2026', createdBy: '1000217' },
-  { id: 'T003', name: 'UAT-TASK-03: ทดสอบงานเสร็จแล้ว',   assignee: '1000006 - กรวิทย์ เจริญนิตย์', priority: 'ต่ำ',  status: 'เสร็จแล้ว',      dueDate: '22/04/2026', createdBy: '1000080' },
-  { id: 'T004', name: 'UAT-TASK-04: ทดสอบ Import Excel',   assignee: '1000217 - อุไรพร เจริญราษฎร์', priority: 'สูง', status: 'ใหม่',            dueDate: '25/04/2026', createdBy: '1000217' },
-  { id: 'T005', name: 'UAT-TASK-05: ทดสอบงานเกินกำหนด',   assignee: '1000181 - ภูมิชาย โกศัลวิตร์', priority: 'สูง', status: 'ค้างอยู่',       dueDate: '01/04/2026', createdBy: '1000075' },
+  { id: 'T001', name: 'UAT-TASK-01: ทดสอบสร้างงาน',        assignee: '1000080 - พนักงานขาย (UAT)', priority: 'สูง',   status: 'ใหม่',            type: 'งานขาย',    dueDate: '30/04/2026', createdBy: '1000080' },
+  { id: 'T002', name: 'UAT-TASK-02: ทดสอบ Assign งาน',     assignee: '1000075 - ไชยพร เกตมะณี',    priority: 'กลาง',  status: 'กำลังดำเนินการ', type: 'ติดตาม',    dueDate: '05/05/2026', createdBy: '1000217' },
+  { id: 'T003', name: 'UAT-TASK-03: ทดสอบงานเสร็จแล้ว',   assignee: '1000006 - กรวิทย์ เจริญนิตย์', priority: 'ต่ำ', status: 'เสร็จแล้ว',      type: 'รายงาน',    dueDate: '22/04/2026', createdBy: '1000080' },
+  { id: 'T004', name: 'UAT-TASK-04: ทดสอบ Import Excel',   assignee: '1000217 - อุไรพร เจริญราษฎร์', priority: 'สูง', status: 'ใหม่',            type: 'Admin',     dueDate: '25/04/2026', createdBy: '1000217' },
+  { id: 'T005', name: 'UAT-TASK-05: ทดสอบงานเกินกำหนด',   assignee: '1000181 - ภูมิชาย โกศัลวิตร์', priority: 'สูง', status: 'ค้างอยู่',       type: 'ติดตาม',    dueDate: '01/04/2026', createdBy: '1000075' },
 ]
 
 export const mockMOUs = [

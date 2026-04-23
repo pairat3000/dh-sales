@@ -13,16 +13,24 @@ const STATUS_CLASS: Record<string, string> = {
   'เสร็จแล้ว':      'badge-approved',
   'ค้างอยู่':       'badge-cancelled',
 }
+const TYPE_CLASS: Record<string, string> = {
+  'งานขาย': 'badge-approved',
+  'ติดตาม': 'badge-pending',
+  'รายงาน': 'badge-draft',
+  'Admin':  'badge-info',
+}
 
 export default function Tasks() {
   const [tab, setTab]                   = useState<'mine' | 'created'>('mine')
   const [search, setSearch]             = useState('')
   const [filterStatus, setFilterStatus] = useState('ทั้งหมด')
   const [filterPriority, setFilterPriority] = useState('ทั้งหมด')
+  const [filterType, setFilterType] = useState('ทั้งหมด')
 
   const filtered = mockTasks.filter(t =>
     (filterStatus   === 'ทั้งหมด' || t.status   === filterStatus) &&
     (filterPriority === 'ทั้งหมด' || t.priority === filterPriority) &&
+    (filterType     === 'ทั้งหมด' || t.type     === filterType) &&
     t.name.toLowerCase().includes(search.toLowerCase())
   )
 
@@ -71,6 +79,13 @@ export default function Tasks() {
           <option>กลาง</option>
           <option>ต่ำ</option>
         </select>
+        <select className="input" style={{ width: 'auto' }} value={filterType} onChange={e => setFilterType(e.target.value)}>
+          <option value="ทั้งหมด">ทุกประเภท</option>
+          <option>งานขาย</option>
+          <option>ติดตาม</option>
+          <option>รายงาน</option>
+          <option>Admin</option>
+        </select>
         <button className="btn-secondary ml-auto"><Upload size={14} /> Import</button>
         <button className="btn-primary"><Plus size={15} /> สร้างงาน</button>
       </div>
@@ -81,6 +96,7 @@ export default function Tasks() {
             <tr className="tbl-header">
               <th style={{ width: 48 }}>ลำดับ</th>
               <th>ชื่องาน</th>
+              <th>ประเภท</th>
               <th>ผู้รับผิดชอบ</th>
               <th>ความสำคัญ</th>
               <th>สถานะ</th>
@@ -93,6 +109,7 @@ export default function Tasks() {
               <tr key={t.id} className="tbl-row">
                 <td className="text-[#64748B]">{i + 1}</td>
                 <td className="font-medium">{t.name}</td>
+                <td><span className={`badge ${TYPE_CLASS[t.type] ?? 'badge-draft'}`}>{t.type}</span></td>
                 <td className="text-[#64748B] text-xs">{t.assignee}</td>
                 <td><span className={`badge ${PRIORITY_CLASS[t.priority] ?? 'badge-draft'}`}>{t.priority}</span></td>
                 <td><span className={`badge ${STATUS_CLASS[t.status]   ?? 'badge-draft'}`}>{t.status}</span></td>
@@ -101,7 +118,7 @@ export default function Tasks() {
               </tr>
             ))}
             {filtered.length === 0 && (
-              <tr><td colSpan={7} className="text-center py-12 text-[#64748B]">ไม่พบข้อมูล</td></tr>
+              <tr><td colSpan={8} className="text-center py-12 text-[#64748B]">ไม่พบข้อมูล</td></tr>
             )}
           </tbody>
         </table>
