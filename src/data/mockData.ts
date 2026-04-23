@@ -96,6 +96,32 @@ export const mockDashboardStats = {
   pendingApprovals: 6,
 }
 
+export const mockForecastByMC = [
+  { mc: 'วัสดุก่อสร้าง', target: 18000000, commit: 12400000, bestCase: 16000000, pipeline: 21000000 },
+  { mc: 'สุขภัณฑ์',      target: 12000000, commit: 8200000,  bestCase: 10500000, pipeline: 14000000 },
+  { mc: 'ไฟฟ้า',         target: 8000000,  commit: 5100000,  bestCase: 7000000,  pipeline: 9500000  },
+  { mc: 'เฟอร์นิเจอร์',  target: 6000000,  commit: 3800000,  bestCase: 5200000,  pipeline: 7200000  },
+  { mc: 'สี',            target: 5000000,  commit: 2600000,  bestCase: 4000000,  pipeline: 5800000  },
+  { mc: 'อื่นๆ',         target: 4000000,  commit: 2000000,  bestCase: 3300000,  pipeline: 4500000  },
+]
+
+export const mockForecastByQuarter = [
+  { quarter: 'Q1',  target: 24000000, commit: 20100000, bestCase: 23700000, pipeline: 28500000 },
+  { quarter: 'Q2',  target: 27000000, commit: 16000000, bestCase: 23500000, pipeline: 32200000 },
+  { quarter: 'Q3',  target: 30000000, commit: 9800000,  bestCase: 18000000, pipeline: 27000000 },
+  { quarter: 'Q4',  target: 33000000, commit: 4200000,  bestCase: 12000000, pipeline: 24000000 },
+]
+
+export const mockDeals = [
+  { id: 'D001', name: 'โครงการ The Forest Residence', customer: 'บริษัท รุ่ยไท่ คอนสตรัคชั่น', owner: 'อรณี พรมมา',        ownerId: '1049269', mc: 'วัสดุก่อสร้าง', stage: 'Proposal',    amount: 2400000, prob: 70,  weighted: 1680000, closeDate: '30/06/2026', commit: false, managerOverride: null },
+  { id: 'D002', name: 'อาคารพาณิชย์ ถ.ลาดพร้าว',     customer: 'นายสุวิเชษฐ์ สุวรรณวงศ์',   owner: 'ปรียานุช พลวิชิต', ownerId: '1072349', mc: 'สุขภัณฑ์',      stage: 'Negotiation', amount: 850000,  prob: 85,  weighted: 722500,  closeDate: '15/05/2026', commit: true,  managerOverride: null },
+  { id: 'D003', name: 'Renovation โรงแรม Feel@Home',   customer: 'Feel@Home Place',            owner: 'อรณี พรมมา',        ownerId: '1049269', mc: 'เฟอร์นิเจอร์',  stage: 'Qualified',   amount: 1200000, prob: 50,  weighted: 600000,  closeDate: '31/07/2026', commit: false, managerOverride: null },
+  { id: 'D004', name: 'ปรับปรุงสำนักงาน T.P.K',       customer: 'บริษัท ตั้งเจริญ จำกัด',    owner: 'พนักงานขาย (UAT)', ownerId: '1000080', mc: 'ไฟฟ้า',         stage: 'Prospect',    amount: 480000,  prob: 20,  weighted: 96000,   closeDate: '31/08/2026', commit: false, managerOverride: null },
+  { id: 'D005', name: 'ทิพย์รัชต์ ริเวอร์ วิว Phase 2', customer: 'ทิพย์รัชต์ ริเวอร์ วิว', owner: 'ปรียานุช พลวิชิต', ownerId: '1072349', mc: 'วัสดุก่อสร้าง', stage: 'Proposal',    amount: 3200000, prob: 65,  weighted: 2080000, closeDate: '30/09/2026', commit: false, managerOverride: null },
+  { id: 'D006', name: 'ห้องน้ำ Premium — สุวรรณภัทร์', customer: 'หจก. สุวรรณภัทร์ธนกิจ',   owner: 'พรพรรณณี จันณรงค์', ownerId: '1004301', mc: 'สุขภัณฑ์',      stage: 'Closed Won',  amount: 620000,  prob: 100, weighted: 620000,  closeDate: '10/04/2026', commit: true,  managerOverride: null },
+  { id: 'D007', name: 'ไฟฟ้า + ระบบ Smart Home',       customer: 'บริษัท ดีโฮม ทดสอบ UAT',   owner: 'พนักงานขาย (UAT)', ownerId: '1000080', mc: 'ไฟฟ้า',         stage: 'Negotiation', amount: 1800000, prob: 80,  weighted: 1440000, closeDate: '31/05/2026', commit: true,  managerOverride: 1500000 },
+]
+
 export const mockCalendarEvents = [
   { date: '2026-04-20', time: '12:30', customer: 'ดวงรัตนา สุขปูรณะ',         createdBy: '1049269' },
   { date: '2026-04-21', time: '08:00', customer: 'Feel@Home Place',              createdBy: '1072349' },
