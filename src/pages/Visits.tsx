@@ -2,91 +2,98 @@ import { useState } from 'react'
 import { Plus, Eye, Search, CheckCircle } from 'lucide-react'
 import { mockVisits } from '../data/mockData'
 
-const STATUS_STYLE: Record<string, string> = {
-  'อนุมัติ':    'badge-green',
-  'รออนุมัติ':  'badge-yellow',
+const STATUS_CLASS: Record<string, string> = {
+  'อนุมัติ':         'badge-approved',
+  'รออนุมัติ':       'badge-pending',
+  'เช็คเอาท์แล้ว':  'badge-plan',
+  'ยกเลิก':         'badge-cancelled',
 }
 
 export default function Visits() {
-  const [search, setSearch] = useState('')
+  const [search, setSearch]             = useState('')
   const [filterStatus, setFilterStatus] = useState('ทั้งหมด')
-  const [filterType, setFilterType] = useState('ทั้งหมด')
+  const [filterType, setFilterType]     = useState('ทั้งหมด')
 
   const filtered = mockVisits.filter(v =>
     (filterStatus === 'ทั้งหมด' || v.status === filterStatus) &&
-    (filterType === 'ทั้งหมด' || (filterType === 'Adhoc' ? v.adhoc : !v.adhoc)) &&
+    (filterType   === 'ทั้งหมด' || (filterType === 'Adhoc' ? v.adhoc : !v.adhoc)) &&
     (v.customerName.includes(search) || v.customerId.includes(search))
   )
 
-  const maskName = (name: string) => {
-    const parts = name.split(' ')
-    return parts.map(p => p.charAt(0) + '*'.repeat(Math.max(p.length - 1, 2))).join(' ')
-  }
-
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-48">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input className="input pl-8" placeholder="ค้นหา Customer ID, ชื่อ..." value={search} onChange={e => setSearch(e.target.value)} />
+      <div className="filter-bar">
+        <div className="relative">
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]" />
+          <input
+            className="input"
+            style={{ paddingLeft: 36, width: 260 }}
+            placeholder="ค้นหา Customer ID, ชื่อ..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </div>
-        <select className="input w-auto" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-          <option>ทั้งหมด</option>
+        <select className="input" style={{ width: 'auto' }} value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
+          <option value="ทั้งหมด">ทุกสถานะ</option>
           <option>อนุมัติ</option>
           <option>รออนุมัติ</option>
+          <option>เช็คเอาท์แล้ว</option>
+          <option>ยกเลิก</option>
         </select>
-        <select className="input w-auto" value={filterType} onChange={e => setFilterType(e.target.value)}>
-          <option>ทั้งหมด</option>
-          <option>แผน</option>
-          <option>Adhoc</option>
+        <select className="input" style={{ width: 'auto' }} value={filterType} onChange={e => setFilterType(e.target.value)}>
+          <option value="ทั้งหมด">ทุกประเภท</option>
+          <option value="แผน">Visit ในแผน</option>
+          <option value="Adhoc">Adhoc</option>
         </select>
         <button className="btn-primary ml-auto"><Plus size={15} /> สร้างนัดหมายนอกแผน</button>
       </div>
 
-      <div className="card p-0 overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="tbl-container">
+        <table className="w-full">
           <thead>
-            <tr className="table-header">
-              <th className="text-left py-3 px-4">ลำดับ</th>
-              <th className="text-left py-3 px-4">Visit Group</th>
-              <th className="text-left py-3 px-4">ลูกค้า</th>
-              <th className="text-left py-3 px-4">วันที่</th>
-              <th className="text-left py-3 px-4">เวลา</th>
-              <th className="text-center py-3 px-4">Adhoc</th>
-              <th className="text-left py-3 px-4">สาขา</th>
-              <th className="text-left py-3 px-4">สร้างโดย</th>
-              <th className="text-left py-3 px-4">สถานะ</th>
-              <th className="py-3 px-4"></th>
+            <tr className="tbl-header">
+              <th style={{ width: 48 }}>ลำดับ</th>
+              <th>Visit Group</th>
+              <th>ลูกค้า</th>
+              <th>วันที่</th>
+              <th>เวลา</th>
+              <th style={{ textAlign: 'center', width: 70 }}>Adhoc</th>
+              <th>สาขา</th>
+              <th>สร้างโดย</th>
+              <th>สถานะ</th>
+              <th style={{ width: 48 }}></th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((v, i) => (
-              <tr key={v.id} className="table-row">
-                <td className="py-3 px-4 text-gray-500">{i + 1}</td>
-                <td className="py-3 px-4 text-gray-600 text-xs">{v.groupName}</td>
-                <td className="py-3 px-4 font-medium text-gray-800">{maskName(v.customerName)}</td>
-                <td className="py-3 px-4 text-gray-600">{v.date}</td>
-                <td className="py-3 px-4 text-gray-600">{v.time}</td>
-                <td className="py-3 px-4 text-center">
-                  {v.adhoc && <CheckCircle size={15} className="text-emerald-500 mx-auto" />}
+              <tr key={v.id} className="tbl-row">
+                <td className="text-[#64748B]">{i + 1}</td>
+                <td className="text-[#64748B] text-xs" style={{ maxWidth: 200 }}>
+                  <span className="block truncate" title={v.groupName}>{v.groupName}</span>
                 </td>
-                <td className="py-3 px-4 text-gray-600">{v.branch}</td>
-                <td className="py-3 px-4 text-gray-600 text-xs">{v.createdBy}</td>
-                <td className="py-3 px-4">
-                  <span className={STATUS_STYLE[v.status] ?? 'badge-gray'}>{v.status}</span>
+                <td className="font-medium">{v.customerName}</td>
+                <td className="text-[#64748B]">{v.date}</td>
+                <td className="text-[#64748B]">{v.time}</td>
+                <td style={{ textAlign: 'center' }}>
+                  {v.adhoc && <CheckCircle size={15} style={{ color: '#16A34A', margin: '0 auto' }} />}
                 </td>
-                <td className="py-3 px-4">
-                  <button className="btn-ghost p-1.5 text-gray-400 hover:text-primary-500"><Eye size={15} /></button>
+                <td className="text-[#64748B] text-xs">{v.branch}</td>
+                <td className="text-[#64748B] text-xs font-mono">{v.createdBy}</td>
+                <td><span className={`badge ${STATUS_CLASS[v.status] ?? 'badge-draft'}`}>{v.status}</span></td>
+                <td>
+                  <button className="btn-icon" style={{ width: 32, height: 32 }}>
+                    <Eye size={14} className="text-[#64748B]" />
+                  </button>
                 </td>
               </tr>
             ))}
+            {filtered.length === 0 && (
+              <tr><td colSpan={10} className="text-center py-12 text-[#64748B]">ไม่พบข้อมูล</td></tr>
+            )}
           </tbody>
         </table>
-        {filtered.length === 0 && (
-          <div className="py-12 text-center text-gray-400 text-sm">ไม่พบข้อมูล</div>
-        )}
-        <div className="px-4 py-3 border-t border-gray-50 text-xs text-gray-400">
-          แสดง {filtered.length} รายการ
+        <div className="px-3 py-2.5 border-t border-[#E2E8F0] text-xs text-[#64748B]">
+          แสดง {filtered.length} จาก {mockVisits.length} รายการ
         </div>
       </div>
     </div>
