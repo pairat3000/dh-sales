@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 🟠 DH Sales
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ระบบจัดการตารางนัดหมายลูกค้า สำหรับทีม Sales ของ Dohome
 
-Currently, two official plugins are available:
+🌐 **Demo:** [https://pairat3000.github.io/dh-sales/](https://pairat3000.github.io/dh-sales/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dashboard** — ภาพรวม KPI การเยี่ยมลูกค้า, เป้าหมาย, Sales Leaderboard
+- - **Visit** — บันทึกและติดตามการเยี่ยมลูกค้ารายเดือน
+  - - **Tasks** — จัดการงานที่ต้องทำ
+    - - **ปฏิทินนัดหมาย** — ดูตารางนัดหมายแบบ Calendar View
+      - - **ลูกค้า** — จัดการข้อมูลลูกค้าทั้งหมด
+        - - **MOU** — จัดการเอกสาร MOU
+          - - **อนุมัติ** — Workflow การอนุมัติรายการต่างๆ
+            - - **Sales Forecast** — คาดการณ์ยอดขายล่วงหน้า
+              - - **รายงาน** — สรุปผลการทำงานของทีม Sales
+                - - **ตั้งค่า** — จัดการผู้ใช้และการตั้งค่าระบบ
+                 
+                  - ---
 
-## Expanding the ESLint configuration
+                  ## Role & Permission
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+                  | Role | สิทธิ์การใช้งาน |
+                  |------|----------------|
+                  | Admin | เข้าถึงได้ทุกเมนู + จัดการผู้ใช้ |
+                  | Manager | ดูภาพรวมทีม + อนุมัติ |
+                  | Sales | บันทึกการเยี่ยม + ดูข้อมูลตัวเอง |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+                  ---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+                  ## Demo Accounts (รหัสผ่าน: 1234)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+                  | Username | Role |
+                  |----------|------|
+                  | admin | Admin |
+                  | manager | Manager |
+                  | sales | Sales |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+                  ---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+                  ## Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+                  - React + TypeScript
+                  - - Vite
+                    - - Tailwind CSS
+                      - - Hosted บน GitHub Pages
+                       
+                        - ---
+
+                        ## การติดตั้งและรัน
+
+                        ```bash
+                        npm install
+                        npm run dev
+                        ```
+
+                        ---
+
+                        © 2026 Dohome Public Company Limited
